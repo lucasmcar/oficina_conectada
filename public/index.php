@@ -1,15 +1,20 @@
 <?php
-require 'vendor/autoload.php';
+require '../vendor/autoload.php';
+
+
 use App\Connection\Connection;
 use App\Dao\CarroDao;
 use App\Helper\JsonHelper;
 use App\Model\Carro;
 use App\Model\Cliente;
-
-
+use App\Router\Route;
 use Dompdf\Dompdf;
 
-$con = new Connection();
+$route = new Route();
+
+
+
+/*$con = new Connection();
 
 $query = "SELECT * FROM teste";
 
@@ -18,7 +23,7 @@ $result = $con->rs();
 
 $carroDao = new CarroDao();
 
-$resultado = $carroDao->selectBy(1);
+$resultado = $carroDao->selectByPlaca(1234564);
 echo "<pre>";
 print_r(JsonHelper::toJson($result));
 echo "</pre>";
@@ -40,7 +45,7 @@ $cliente->addCarro($carro2);
 
 echo "<pre>";
 var_dump($cliente);
-echo "</pre>";
+echo "</pre>";*/
 
 
 
