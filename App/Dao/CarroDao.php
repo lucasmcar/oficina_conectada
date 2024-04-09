@@ -27,11 +27,11 @@ class CarroDao
         $this->connection->execute();
     }
 
-    public function selectBy(int $id)
+    public function selectByPlaca(int $placa)
     {
-        $sql = "SELECT * FROM teste WHERE id = :id";
+        $sql = "SELECT * FROM teste WHERE id = :placa";
         $this->connection->prepare($sql);
-        $this->connection->bind(':id', $id);
+        $this->connection->bind(':placa', $placa);
         $resultado = $this->connection->one();
         return $resultado;
     }
