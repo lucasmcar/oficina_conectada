@@ -9,6 +9,8 @@ class Route extends Bootstrap
     protected function initRoutes()
     {
 
+        //$routes['home'] = Get($rota, $controller@$actcion);
+
         $routes['home'] = [
             'route' => '/',
             'controller' => 'indexController',
