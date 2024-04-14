@@ -1,7 +1,9 @@
 <?php
 require '../vendor/autoload.php';
 
-
+/*use App\Bot\Bot;
+use App\Bot\Message;
+use App\Helper\DateTimeHelper;
 use App\Connection\Connection;
 use App\Dao\CarroDao;
 use App\Helper\JsonHelper;
@@ -9,10 +11,29 @@ use App\Model\Carro;
 use App\Model\Cliente;
 use App\Router\Route;
 use Dompdf\Dompdf;
+use TelegramBot\Api\Types\Inline\InlineKeyboardMarkup;
+
+
+header('Content-Type: application/json; charset=utf-8');
+
 
 $route = new Route();
 
+$bot = new Bot(BOT_TOKEN);
 
+$keyboar = new InlineKeyboardMarkup([
+    [
+        ['text' => 'Acompanhar', 'url' => 'https://192.168.1.21:8000/service/123456']
+    ]
+    ]);
+
+$msg = Message::sendMessage("123456", "Lucas", "Palio");
+
+$bot->sendMessage(message: $msg, parseMode: null, disablePreview: false, replyToMessageId : null, replyMarkup: $keyboar);
+
+print_r(MARCAS);
+
+print_r(DateTimeHelper::toDatabaseFormat("24/01/2024 22:15:30"));*/
 
 /*$con = new Connection();
 

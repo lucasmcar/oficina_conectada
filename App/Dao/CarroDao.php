@@ -16,13 +16,13 @@ class CarroDao
 
     public function insert(Carro $model, int $clienteId)
     {
-        $sql = "INSERT INTO tb_carro (modelo, placa, cor, ano, marca_id, cliente_id) VALUES (:modelo, :placa, :cor, :ano, :marca_id, :cliente_id)";
+        $sql = "INSERT INTO tb_carro (modelo, placa, cor, ano, marca_id, cliente_id) VALUES (:modelo, :placa, :cor, :ano, :marca, :cliente_id)";
         $this->connection->prepare($sql);
         $this->connection->bind(':modelo', $model->getModelo());
         $this->connection->bind(':placa', $model->getPlaca());
         $this->connection->bind(':cor', $model->getCor());
         $this->connection->bind(':ano', $model->getAno());
-        $this->connection->bind(':marca_id', $model->getMarcaId());
+        $this->connection->bind(':marca', $model->getMarca());
         $this->connection->bind(':cliente_id', $clienteId);
         $this->connection->execute();
     }
