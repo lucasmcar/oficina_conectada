@@ -31,7 +31,7 @@ class IndexController extends Action
         @$this->view->result = JsonHelper::toJson($resultado);
 
 
-        //@$this->view->rs = JsonHelper::toJson($resultado);
+        @$this->view->rs = JsonHelper::toJson($resultado);
 
 
         $this->render('index');
@@ -40,5 +40,10 @@ class IndexController extends Action
     public function about()
     {
         $this->render('about', 'index');
+    }
+
+    public function sendMessage()
+    {
+        
     }
 }

@@ -9,7 +9,11 @@
     "autoload": {
         "psr-4": {
             "App\\": "App/"
-        }
+        },
+        "files": [
+            "consts/bot_consts.php",
+            "readonly/marcas.php"
+        ]
     },
     "authors": [
         {
@@ -17,6 +21,7 @@
         }
     ],
     "require": {
-        "dompdf/dompdf": "*"
+        "dompdf/dompdf": "*",
+        "telegram-bot/api": "^2.5"
     }
 }
