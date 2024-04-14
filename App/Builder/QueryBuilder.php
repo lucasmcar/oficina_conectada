@@ -9,6 +9,7 @@ class QueryBuilder
 {
     private $connection;
     private $table;
+    private $joins = [];
     private $select = '*';
     private $where = [];
     private $orderBy;
@@ -104,5 +105,10 @@ class QueryBuilder
         $statement = $this->connection->prepare($query);
         $statement->execute($params);
         return $statement->fetchAll(\PDO::FETCH_ASSOC);
+    }
+
+    public function join(string $table, string $condition, string $type = 'INNER'): self {
+        $this->joins[] = "$type JOIN $table ON $condition";
+        return $this;
     }
 }

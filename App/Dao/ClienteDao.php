@@ -2,32 +2,36 @@
 
 namespace App\Dao;
 
-use App\Builder\QueryBuilder;
+
 use App\Connection\Connection;
+use App\Model\Cliente;
 
 class ClienteDao
 {
-
     private $connection;
-    private $queryBuilder;
-
+ 
     public function __construct()
     {
-        $this->connection = new Connection();    
-        $this->queryBuilder = new QueryBuilder($this->connection, 'teste');    
+        $this->connection = new Connection();      
     }
 
-    public function insert(array $clienteData) : void
+    public function insert(Cliente $model) : void
     {
-        $this->queryBuilder->insert($clienteData)->execute();
+        $sql = "INSERT INTO tb_carro (nome, email, telefone) VALUES (:nome, :email, :telefone)";
+        $this->connection->prepare($sql);
+        $this->connection->bind(':nome', $model->getNome());
+        $this->connection->bind(':email', $model->getEmail());
+        $this->connection->bind(':telefone', $model->getTelefone());
+        
+        $this->connection->execute();
     }
 
     public function selectAll()
     {
-        return $this->queryBuilder->select('*')->execute();
+       
     }
 
-    public function selectAllBy()
+    public function selectCLientBy()
     {
 
     }

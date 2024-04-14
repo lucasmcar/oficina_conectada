@@ -2,8 +2,6 @@
 
 namespace App\Connection;
 
-use Exception;
-
 class Connection
 {
     private $user;
@@ -18,7 +16,7 @@ class Connection
         $this->user = 'root';
         $this->password = 'root';
         $this->host = 'localhost';
-        $this->db = 'teste_db';
+        $this->db = 'db_oficina_conectada';
         $this->getConnection();
     }
 
