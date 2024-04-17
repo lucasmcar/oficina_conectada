@@ -16,7 +16,7 @@ class CarroDao
 
     public function insert(Carro $model, int $clienteId)
     {
-        $sql = "INSERT INTO tb_carro (modelo, placa, cor, ano, marca_id, cliente_id) VALUES (:modelo, :placa, :cor, :ano, :marca, :cliente_id)";
+        $sql = "INSERT INTO carro (modelo, placa, cor, ano, marca_id, cliente_id) VALUES (:modelo, :placa, :cor, :ano, :marca, :cliente_id)";
         $this->connection->prepare($sql);
         $this->connection->bind(':modelo', $model->getModelo());
         $this->connection->bind(':placa', $model->getPlaca());
@@ -27,18 +27,18 @@ class CarroDao
         $this->connection->execute();
     }
 
-    public function selectByPlaca(int $placa)
+    public function selectByPlaca(int $placa) : array
     {
-        $sql = "SELECT * FROM teste WHERE id = :placa";
+        $sql = "SELECT * FROM veiculo WHERE placa = :placa";
         $this->connection->prepare($sql);
         $this->connection->bind(':placa', $placa);
         $resultado = $this->connection->one();
         return $resultado;
     }
 
-    public function selectAll()
+    public function selectAll() : array | null
     {
-        $sql = "SELECT * FROM teste";
+        $sql = "SELECT * FROM veiculo";
         $this->connection->query($sql);
         $resultado = $this->connection->rs();
         return $resultado;
@@ -47,21 +47,21 @@ class CarroDao
 
     public function update(Carro $model)
     {
-        $sql = "UPDATE teste SET modelo = :modelo, placa = :placa, cor = :cor, ano = :ano WHERE id_carro = :id";
+        $sql = "UPDATE veiculo SET modelo = :modelo, placa = :placa, cor = :cor, ano = :ano WHERE placa = :placa_id";
         $this->connection->prepare($sql);
         $this->connection->bind(':modelo', $model->getModelo());
         $this->connection->bind(':placa', $model->getPlaca());
         $this->connection->bind(':cor', $model->getCor());
         $this->connection->bind(':ano', $model->getAno());
-        $this->connection->bind(':id', $model->getCarroId());
+        $this->connection->bind(':placa_id', $model->getPlaca());
         $this->connection->execute();
     }
 
-    public function delete(int $id)
+    public function delete(string $placa)
     {
-        $sql = "DELETE FROM tb_carro WHERE id_carro = :id";
+        $sql = "DELETE FROM veiculo WHERE placa = :placa";
         $this->connection->prepare($sql);
-        $this->connection->bind(':id', $id);
+        $this->connection->bind(':placa', $placa);
         $this->connection->execute();
     }
 
@@ -72,7 +72,7 @@ class CarroDao
      */
     public function softDelete(int $id)
     {
-        $sql = "UPDATE teste SET deleted_at = NOW() WHERE id_carro = :id";
+        $sql = "UPDATE veiculo SET deleted_at = NOW() WHERE id_carro = :id";
         $this->connection->prepare($sql);
         $this->connection->bind(':id', $id);
     }

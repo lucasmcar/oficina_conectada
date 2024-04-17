@@ -22,6 +22,7 @@
     ],
     "require": {
         "dompdf/dompdf": "*",
-        "telegram-bot/api": "^2.5"
+        "telegram-bot/api": "^2.5",
+        "phpmailer/phpmailer": "^6.9"
     }
 }

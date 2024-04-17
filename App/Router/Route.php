@@ -9,9 +9,32 @@ class Route extends Bootstrap
     protected function initRoutes()
     {
 
-        //$routes['home'] = Get($rota, $controller@$actcion);
+        //Rt::Get($rota, $controller@$action);
 
-        $routes['home'] = [
+        //Rt:Get("/", 'IndexController&action)
+
+        $routes = [
+
+            'home' => [
+                'route' => '/',
+                'controller' => 'indexController',
+                'action' => 'index'
+            ],
+
+            'about' => [
+                'route' => '/about',
+                'controller' => 'indexController',
+                'action' => 'about'
+            ],
+
+            'contact' => [
+                'route' => '/contact',
+                'controller' => 'indexController',
+                'action' => 'contact'
+            ],
+        ];
+
+        /*$routes['home'] = [
             'route' => '/',
             'controller' => 'indexController',
             'action' => 'index'
@@ -21,7 +44,7 @@ class Route extends Bootstrap
             'route' => '/about',
             'controller' => 'indexController',
             'action' => 'about'
-        ];
+        ];*/
 
         $this->setRoutes($routes);
     }

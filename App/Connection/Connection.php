@@ -2,6 +2,9 @@
 
 namespace App\Connection;
 
+use PDO;
+use PDOStatement;
+
 class Connection
 {
     private $user;
@@ -13,14 +16,14 @@ class Connection
 
     public function __construct()
     {
-        $this->user = 'root';
-        $this->password = 'root';
-        $this->host = 'localhost';
-        $this->db = 'db_oficina_conectada';
+        $this->user = $_ENV['USER'];
+        $this->password = $_ENV['PASS'];
+        $this->host = $_ENV['HOST'];
+        $this->db = $_ENV['DATABASE'];
         $this->getConnection();
     }
 
-    public function getConnection()
+    public function getConnection() : PDO
     {
         try{
             $this->instance = new \PDO("mysql:host=$this->host;dbname=$this->db", $this->user, $this->password);
@@ -31,7 +34,7 @@ class Connection
         }
     }
 
-    public function prepare(string $sql, array $options = [])
+    public function prepare(string $sql, array $options = []) : PDOStatement|false
     {
         return $this->stmt = $this->instance->prepare($sql, $options);
     }
@@ -56,7 +59,7 @@ class Connection
         $this->stmt->bindValue($param, $value, $type);
     }
 
-    public function query(string $sql, int $fetchMode = \PDO::FETCH_ASSOC)
+    public function query(string $sql, int $fetchMode = \PDO::FETCH_ASSOC) : PDOStatement | false
     {
         if(isset($fetchMode)){
             return $this->stmt = $this->instance->query($sql, $fetchMode); 
@@ -65,7 +68,7 @@ class Connection
         return $this->stmt = $this->instance->query($sql);
     }
 
-    public function execute()
+    public function execute() : bool
     {
         return $this->stmt->execute();
     }
@@ -80,15 +83,17 @@ class Connection
      
         return [
             'n_of_results' => $this->getTotalResults($arrayResult),
-            'results' => $arrayResult
+            'results' => !empty($arrayResult) ? $arrayResult : "Sem Resultado"
         ];
     }
 
-    public function getTotalResults(array $results)
+    public function getTotalResults(array $results) : int
     {
         if(!empty($results)){
             return count($results);
         }
+
+        return 0;
     }
 
     public function one() : array {
