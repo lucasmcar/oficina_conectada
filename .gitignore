@@ -2,3 +2,4 @@
 vendor/
 regras.txt
 .todo
+.env

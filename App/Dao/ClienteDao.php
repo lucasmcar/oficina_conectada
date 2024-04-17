@@ -17,7 +17,7 @@ class ClienteDao
 
     public function insert(Cliente $model) : void
     {
-        $sql = "INSERT INTO tb_carro (nome, email, telefone) VALUES (:nome, :email, :telefone)";
+        $sql = "INSERT INTO cliente (nome, email, telefone) VALUES (:nome, :email, :telefone)";
         $this->connection->prepare($sql);
         $this->connection->bind(':nome', $model->getNome());
         $this->connection->bind(':email', $model->getEmail());
@@ -28,7 +28,10 @@ class ClienteDao
 
     public function selectAll()
     {
-       
+        $sql = "SELECT * FROM cliente";
+        $this->connection->query($sql);
+        $resultado = $this->connection->rs();
+        return $resultado;
     }
 
     public function selectCLientBy()

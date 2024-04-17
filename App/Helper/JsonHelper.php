@@ -7,7 +7,12 @@ class JsonHelper
 
     public static function toJson(array $data)
     {
-        return json_encode($data, JSON_PRETTY_PRINT);
+        if(!empty($data)){
+            return json_encode($data, JSON_PRETTY_PRINT);
+        }
+
+        throw new \Exception("Não há dados disponíveis");
+        
     }
 
     public static function toArray($data)
