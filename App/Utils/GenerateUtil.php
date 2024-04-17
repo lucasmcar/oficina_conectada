@@ -2,10 +2,12 @@
 
 namespace App\Utils;
 
-class GenerateUtil
+abstract class GenerateUtil
 {
+
     public static function generateRandomOs() : int
     {
         return rand(000000, 999999);
     }
+
 } 
