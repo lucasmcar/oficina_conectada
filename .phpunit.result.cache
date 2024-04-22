@@ -1,0 +1,1 @@
+{"version":1,"defects":{"tests\\StatusEtapaTest::testStatusEtapaClass":8},"times":{"tests\\StatusEtapaTest::testStatusEtapaClass":0.032,"CarroTest::testIfCarroClassExists":0.021,"CarroTest::testCarroModelo":0.003}}
