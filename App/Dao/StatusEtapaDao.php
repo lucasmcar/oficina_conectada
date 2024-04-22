@@ -1,10 +1,10 @@
-<?php
+<?php 
 
 namespace App\Dao;
 
 use App\Connection\Connection;
 
-class EtapaDao
+class StatusEtapa
 {
     private $connection;
 

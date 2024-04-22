@@ -11,12 +11,13 @@ class Cliente
     private $carros;
     private $isTelegram;
     private $isWpp;
+    private $dtDeletado;
 
-    public function __construct()
+    public function __construct(bool $isWpp, bool $isTelegram)
     {
         $this->carros = [];
-        $this->isWpp = false;
-        $this->isTelegram = false;
+        $this->isWpp = $isWpp;
+        $this->isTelegram = $isTelegram;
     }
 
     public function setIdCliente(int $idCliente) : void
@@ -69,15 +70,23 @@ class Cliente
         $this->telefone = $telefone;
     }
 
-    public function isWpp(bool $isWpp) : bool 
+    public function isWpp() : bool 
     {
-        $this->isWpp = $isWpp;
         return $this->isWpp;
     }
 
-    public function isTelegram(bool $isTelegram) : bool 
+    public function isTelegram() : bool 
     {
-        $this->isTelegram = $isTelegram;
         return $this->isTelegram;
     }
+
+    public function setDtDeletado(string $dtDeletado) : void
+    {
+        $this->dtDeletado = $dtDeletado;
+    }
+
+    public function getDtDeletado() : string
+    {
+        return $this->dtDeletado;
+    } 
 } 

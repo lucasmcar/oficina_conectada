@@ -32,6 +32,12 @@ class Route extends Bootstrap
                 'controller' => 'indexController',
                 'action' => 'contact'
             ],
+
+            'relatorio' => [
+                'route' => '/relatorio',
+                'controller' => 'reportController',
+                'action' => 'report'
+            ],
         ];
 
         /*$routes['home'] = [

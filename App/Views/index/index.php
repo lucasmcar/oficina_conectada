@@ -13,7 +13,7 @@
     <body>
         <?= $this->view->result; ?>
         <hr>
-        <?= $this->view->rs; ?>
+        <a href="/relatorio">Gerar Relatorio</a>
     </body>
     
 </html>

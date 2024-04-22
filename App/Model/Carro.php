@@ -12,6 +12,7 @@ class Carro
     private $marca;
     private $clienteId;
     private $idServico;
+    private $dtDeletado;
 
     public function __construct()
     {
@@ -97,4 +98,14 @@ class Carro
     {
         return $this->idServico;
     }
+
+    public function setDtDeletado(string $dtDeletado) : void
+    {
+        $this->dtDeletado = $dtDeletado;
+    }
+
+    public function getDtDeletado() : string
+    {
+        return $this->dtDeletado;
+    } 
 }
