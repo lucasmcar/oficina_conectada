@@ -2,7 +2,7 @@
 
 namespace App\Model;
 
-class Endereco
+class EnderecoCliente
 {
     private $idEndereco;
     private $logradouro;
@@ -10,6 +10,7 @@ class Endereco
     private $bairro;
     private $cidade;
     private $uf;
+    private $idCliente;
 
     public function __construct()
     {
@@ -74,5 +75,15 @@ class Endereco
     public function getUf() : string
     {
         return $this->uf;
+    }
+
+    public function setIdCliente(int $idCliente) : void
+    {
+        $this->idCliente = $idCliente;
+    }
+
+    public function getIdCliente() : int 
+    {
+        return $this->idCliente;
     }
 }

@@ -2,4 +2,7 @@
 vendor/
 regras.txt
 .todo
-.env
+/tests
+phpunit.xml
+phpunit.xml.bak
+coverage/

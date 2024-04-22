@@ -1,10 +1,10 @@
-<?php
+<?php 
 
 namespace App\Dao;
 
 use App\Connection\Connection;
 
-class EtapaDao
+class ServicoEtapaDao
 {
     private $connection;
 
@@ -12,4 +12,9 @@ class EtapaDao
     {
         $this->connection = new Connection();
     }
-}
+
+    public function insert()
+    {
+        
+    }
+} 

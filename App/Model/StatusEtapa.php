@@ -33,12 +33,12 @@ class StatusEtapa
         return $this->descricao;
     }
 
-    public function setIdEtpa(int $idEtapa)
+    public function setIdEtpa(int $idEtapa) : void
     {
         $this->idEtapa = $idEtapa;
     }
 
-    public function getIdEtapa()
+    public function getIdEtapa() : int
     {
         return $this->idEtapa;
     }
