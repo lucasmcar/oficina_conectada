@@ -16,7 +16,7 @@ class Servico
     
     public function __construct()
     {
-        
+
     }
 
     public function setIdServico(int $idServico) : void
@@ -108,6 +108,5 @@ class Servico
     {
         return $this->carroId;
     }
-
 
 }

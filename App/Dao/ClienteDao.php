@@ -16,22 +16,23 @@ class ClienteDao
         $this->connection = ConnectionInstance::getInstance();      
     }
 
-    public function insert(Cliente $model) : void
+    public function insert(Cliente $model) : int
     {
-        $sql = "INSERT INTO cliente (nome, email, telefone, dt_cadastro, ehWpp, ehTelegram) VALUES (:nome, :email, :telefone, NOW(), :isWpp, :isTelegram)";
+        $sql = "INSERT INTO cliente (nome, email, dtcadastro, nridentificacao, dtdesde) VALUES (:nome, :email,  NOW(), :nridentificacao, :dtdesde)";
         $this->connection->prepare($sql);
         $this->connection->bind(':nome', $model->getNome());
         $this->connection->bind(':email', $model->getEmail());
-        $this->connection->bind(':telefone', $model->getTelefone());
-        $this->connection->bind(':isWpp', $model->isWpp());
-        $this->connection->bind(':isTelegram', $model->isTelegram());
+        $this->connection->bind(':nridentificacao', $model->getNrIdentificacao());
+        $this->connection->bind(':dtdesde', $model->getDtDesde());
+        if($this->connection->execute()){
+            return $this->connection->lastInsertId();
+        }
         
-        $this->connection->execute();
     }
 
     public function selectAll()
     {
-        $sql = "SELECT nome, email, telefone, ehWpp, ehTelegram FROM cliente";
+        $sql = "SELECT nome, email, nridentificacao, dtdesde FROM cliente";
         $this->connection->query($sql);
         $resultado = $this->connection->rs();
         return $resultado;
@@ -39,7 +40,7 @@ class ClienteDao
 
     public function selectClientBy(Cliente $model)
     {
-        $sql = "SELECT nome, email, telefone FROM cliente WHERE nome LIKE :nome OR email LIKE :email";
+        $sql = "SELECT nome, email, dtdesde FROM cliente WHERE nome LIKE :nome OR email LIKE :email";
         $this->connection->prepare($sql);
         $this->connection->bind(":nome", "%".$model->getNome()."%");
         $this->connection->bind(":email", "%".$model->getEmail()."%");
@@ -50,27 +51,16 @@ class ClienteDao
     {
         $sql = "UPDATE cliente SET 
             nome = :nome, 
-            telefone = :telefone,
             email = :email  
-            ehWpp = :isWapp, 
-            ehTelegram = :isTelegram, 
             WHERE idcliente = :idcliente";
         $this->connection->prepare($sql);
         if($model->getNome() != ""){
             $this->connection->bind(":nome", $model->getNome());
         }
-        if($model->getTelefone() != ""){
-            $this->connection->bind(":telefone", $model->getTelefone());
-        }
         if($model->getEmail() != ""){
             $this->connection->bind(":email", $model->getEmail());
         }
-        if($model->isWpp()){
-            $this->connection->bind(":isWapp", $model->isWpp());
-        }
-        if($model->isTelegram()){
-            $this->connection->bind(":isTelegram", $model->isTelegram());
-        }
+        
         $this->connection->bind("idcliente", $idCliente);
         return $this->connection->execute();
     }

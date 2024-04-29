@@ -7,27 +7,23 @@ use App\Utils\GenerateUtil;
 use App\Bot\Bot;
 use App\Bot\Message;
 use App\Helper\DateTimeHelper;
-use App\Connection\Connection;
-use App\Dao\CarroDao;
-use App\Helper\JsonHelper;
-use App\Model\Carro;
-use App\Model\Cliente;
 use App\Router\Route;
 use App\Utils\DotEnvUtil;
 use Dompdf\Dompdf;
 use TelegramBot\Api\Types\Inline\InlineKeyboardMarkup;
 
-define("ROOT_PATH", $_SERVER['DOCUMENT_ROOT']);
-
-$array = ["public", "index.php"];
-
-
-$urlReplaced = str_replace($array, "", ROOT_PATH);
-
-
-DotEnvUtil::loadEnv($urlReplaced.".env");
+use App\Core\Maker\Make;
+use App\Session\Session;
 
 date_default_timezone_set('America/Sao_Paulo');
+session_start();
+
+
+$path = dirname(__FILE__, 2);
+
+
+DotEnvUtil::loadEnv($path."/.env");
+
 //header('Content-Type: application/json; charset=utf-8');
 
 
@@ -45,25 +41,6 @@ $msg = Message::sendMessage("123456", "Lucas", "Palio");
 
 $bot->sendMessage(message: $msg, parseMode: null, disablePreview: false, replyToMessageId : null, replyMarkup: $keyboar);*/
 
-
-$con = new Connection();
-
-$query = "SELECT * FROM veiculo";
-
-$con->query($query);
-$result = $con->rs();
-
-$carroDao = new CarroDao();
-
-
-//$resultado = $carroDao->selectByPlaca(1234564);
-/*echo "<pre>";
-print_r(JsonHelper::toJson($result));
-echo "</pre>";
-echo "<hr>";
-echo "<pre>";*/
-//(JsonHelper::toJson($resultado));
-/*echo "</pre>";*/
 
 
 // instantiate and use the dompdf class

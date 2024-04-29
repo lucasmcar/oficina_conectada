@@ -2,7 +2,6 @@
 
 use App\Connection\Connection;
 use App\Model\Servico;
-use App\Utils\GenerateUtil;
 
 class ServicoDao 
 {
@@ -15,7 +14,7 @@ class ServicoDao
     }
 
 
-    public function insert(Servico $model, int $veiculoId)
+    public function insert(Servico $model, int $veiculoId) : bool
     {
         $sql = "INSERT INTO servico (ordem_servico, tipo, descricao, valor, dt_entrada, dt_previsao) VALUES (:os, :tipo, :descricao, :valor, NOW(), :dt_previsao)";
         $this->connection->prepare($sql);
@@ -24,7 +23,7 @@ class ServicoDao
         $this->connection->bind(':descricao', $model->getDescricao());
         $this->connection->bind(':valor', $model->getValor());
         $this->connection->bind(':dt_previsao', $model->getDtPRevisao());
-        $this->connection->execute();
+        return $this->connection->execute();
         
     }
 
@@ -65,4 +64,14 @@ class ServicoDao
         $this->connection->bind(":os", $model->getOs());
         
     }
+
+    public function delete(int $idServico) : bool
+    {
+        $sql = "DELETE FROM servico WHERE idservico = :idservico";
+        $this->connection->prepare($sql);
+        $this->connection->bind(':idservico', $idServico);
+        return $this->connection->execute();
+    }
+
+
 }

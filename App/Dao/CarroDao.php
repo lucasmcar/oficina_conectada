@@ -16,9 +16,9 @@ class CarroDao
         $this->connection = ConnectionInstance::getInstance();
     }
 
-    public function insert(Carro $model, int $clienteId)
+    public function insert(Carro $model) : int
     {
-        $sql = "INSERT INTO carro (modelo, placa, cor, ano, marca, dt_cadastro, idcliente) VALUES (:modelo, :placa, :cor, :ano, :marca, NOW(), :cliente_id)";
+        $sql = "INSERT INTO veiculo (modelo, placa, cor, ano, marca, dt_cadastro, idcliente) VALUES (:modelo, :placa, :cor, :ano, :marca, NOW(), :cliente_id)";
         $this->connection->prepare($sql);
         $this->connection->bind(':modelo', $model->getModelo());
         $this->connection->bind(':placa', $model->getPlaca());
@@ -26,7 +26,9 @@ class CarroDao
         $this->connection->bind(':ano', $model->getAno());
         $this->connection->bind(':marca', $model->getMarca());
         $this->connection->bind(':cliente_id', $model->getClienteId());
-        $this->connection->execute();
+        if($this->connection->execute()){
+            return $this->connection->lastInsertId();
+        }
     }
 
     public function selectByPlaca(int $placa) : array
@@ -52,15 +54,15 @@ class CarroDao
 
     public function selectAllInfoCarro() : array | null
     {
-        $sql = "SELECT v.modelo, v.placa, v.cor, v.ano, v.marca, c.nome FROM veiculo INNER JOIN cliente c ON v.idcliente = c.idcliente";
+        $sql = "SELECT v.idveiculo, v.modelo, v.placa, v.cor, v.ano, v.marca, c.nome, c.nridentificacao, v.dt_cadastro FROM veiculo v INNER JOIN cliente c ON v.idcliente = c.idcliente";
         $this->connection->prepare($sql);
-        $resultado = $this->connection->one();
+        $resultado = $this->connection->rs();
         return $resultado;
     } 
 
     public function update(Carro $model) : bool
     {
-        $sql = "UPDATE veiculo SET modelo = :modelo, placa = :placa, cor = :cor, ano = :ano WHERE placa = :placa_id";
+        $sql = "UPDATE veiculo SET modelo = :modelo, placa = :placa, cor = :cor, ano = :ano WHERE placa = :placa";
         $this->connection->prepare($sql);
         if($model->getModelo() != ""){
             $this->connection->bind(':modelo', $model->getModelo());

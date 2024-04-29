@@ -10,7 +10,7 @@ class DateTimeHelper
      * @param string $date
      * @return string | null
      */
-    public static function toDatabaseFormat(string $date) : string| false
+    public static function toDatabaseFormat(string $date) : string
     {
         return \DateTime::createFromFormat('d/m/Y H:i:s', $date)->format("Y-m-d H:i:s");
     }
@@ -20,8 +20,8 @@ class DateTimeHelper
      * @param string $date
      * @return string | null
      */
-    public static function toNormalFormat(string $date) : string | false
+    public static function toNormalFormat(string $date) : string 
     {
-        return \DateTime::createFromFormat('Y-m-d : H:i:s', $date)->format("d/m/Y H:i:s");
+        return \DateTime::createFromFormat('Y-m-d H:i:s', $date)->format("d/m/Y H:i:s");
     }
 }

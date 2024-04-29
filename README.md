@@ -5,17 +5,17 @@
 
 - Cliente pode ser proprietário ou não do veículo
 - Pode possuir 1 ou mais veículos
-- Deverá ter cadastrado: Nome, Email, Telefone
+- Deverá ter cadastrado: Nome, Email, Numero de identificação
 - Data de seu cadastro será sempre a data atual
 - Em contra partida, o cliente, mesmo novo no cadastro, já deverá cadastrar a data, pelo menos o ano do qual é cliente
-- Cliente podera realizar alterações em seus dados, com exceção da data de cadastro
+- Cliente podera realizar alterações em seus dados, com exceção da data de cadastro e do numero de identificacao
 - Para ter acesso ao sistema, o cliente terá um codigo gerado após o cadastro na oficina
 
 ## Sobre o veículo
 
 - Deverá ser de responsabilidade de cliente ou proprietário
 - Devera ter cadastrado: ano, marca, cor, modelo e placa
-- A identificação do veículo se dará unica e exclusivamente pela placa
+- A identificação do veículo se dará única e exclusivamente pela placa
 - Só poderá ser cadastrado, caso o cliente ja tenha sido previamente cadastrado
 - Será enviada uma mensagem automatica para o bot, avisando sobre o cadastro do veiculo
 
@@ -43,3 +43,10 @@ sobre o andamento
 ## Envio de email
 - Envio de relatorio por email (opção)
 - Andamento do serviço por email
+
+## Nota fiscal
+GErar XML
+Assinar XML
+Validar XML
+Enviar Sefaz
+Consultar protocolo
