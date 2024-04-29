@@ -6,3 +6,4 @@ regras.txt
 phpunit.xml
 phpunit.xml.bak
 coverage/
+.phpunit.cache
