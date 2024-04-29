@@ -10,4 +10,9 @@ abstract class GenerateUtil
         return rand(000000, 999999);
     }
 
+    public static function generateRandomNrId() : int
+    {
+        return rand(000000, 999999);
+    }
+
 } 

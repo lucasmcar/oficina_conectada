@@ -9,14 +9,14 @@ class CarroRepository
 {
     private $dao;
 
-    public function __construct(CarroDao $dao)
+    public function __construct()
     {
-        $this->dao = $dao;
+        $this->dao = new CarroDao();
     }
 
-    public function create(Carro $carro, int $idCliente)
+    public function create(Carro $carro) :int
     {
-        $this->dao->insert($carro, $idCliente);
+        return $this->dao->insert($carro);
     }
 
     public function getBy(string $placa)
@@ -29,9 +29,14 @@ class CarroRepository
         return $this->dao->selectAll();
     }
 
-    public function update(int $id)
+    public function getAllInfo()
     {
+        return $this->dao->selectAllInfoCarro();
+    }
 
+    public function update(Carro $model)
+    {
+        return $this->dao->update($model);
     }
 
     public function destroy(int $id)

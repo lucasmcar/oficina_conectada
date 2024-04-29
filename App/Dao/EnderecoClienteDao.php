@@ -38,6 +38,25 @@ class EnderecoClienteDao
         return $resultado;
     }
 
+    public function selectAllWithInfo()
+    {
+        $sql = "SELECT 
+            e.logradouro, 
+            e.numero, 
+            e.bairro, 
+            e.cidade, 
+            e.uf, 
+            o.nome, 
+            o.telefone, 
+            o.email FROM endereco_cliente e INNER JOIN cliente c ON e.idcliente = c.idcliente";
+        if(isset($orderBy)){
+            $sql .= " ORDER BY modelo ".$orderBy; 
+        }
+        $this->connection->query($sql);
+        $resultado = $this->connection->rs();
+        return $resultado;
+    }
+
     public function selectByCliente(int $idCliente) : array
     {
         $sql = "SELECT logradouro, numero, bairro, cidade, uf FROM endereco_cliente WHERE idcliente = :idcliente";

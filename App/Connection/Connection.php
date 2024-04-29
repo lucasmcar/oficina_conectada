@@ -81,10 +81,7 @@ class Connection
         $arrayResult = $this->stmt->fetchAll(\PDO::FETCH_ASSOC);
 
      
-        return [
-            'n_of_results' => $this->getTotalResults($arrayResult),
-            'results' => !empty($arrayResult) ? $arrayResult : "Sem Resultado"
-        ];
+        return  !empty($arrayResult) ? $arrayResult : "Sem Resultado";
     }
 
     public function getTotalResults(array $results) : int

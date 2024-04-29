@@ -28,10 +28,10 @@ class IndexController extends Action
 
         $resultado = $clienteDao->selectAll();
 
-        @$this->view->result = JsonHelper::toJson($resultado);
+        //@$this->view->result = JsonHelper::toJson($resultado);
 
 
-        @$this->view->rs = JsonHelper::toJson($resultado);
+        //@$this->view->rs = JsonHelper::toJson($resultado);
 
 
         $this->render('index', 'index');

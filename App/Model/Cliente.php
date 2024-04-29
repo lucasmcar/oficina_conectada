@@ -2,22 +2,23 @@
 
 namespace App\Model;
 
+use App\Utils\GenerateUtil;
+
 class Cliente
 {
     private $idCliente;
     private $nome;
     private $email;
-    private $telefone;
     private $carros;
-    private $isTelegram;
-    private $isWpp;
+    private $telefones;
+    private $dtDesde;
+    private $nrIdentificacao;
     private $dtDeletado;
 
-    public function __construct(bool $isWpp, bool $isTelegram)
+    public function __construct()
     {
         $this->carros = [];
-        $this->isWpp = $isWpp;
-        $this->isTelegram = $isTelegram;
+        $this->telefones = [];
     }
 
     public function setIdCliente(int $idCliente) : void
@@ -40,6 +41,16 @@ class Cliente
         return $this->carros;
     }
 
+    public function addTelefones(Telefone $telefone)
+    {
+        $this->telefones[] = $telefone;
+    }
+
+    public function getTelefone()
+    {
+        return $this->telefones;
+    }
+
     public function getNome() :string
     {
         return $this->nome;
@@ -60,26 +71,7 @@ class Cliente
         $this->email = $email;
     }
 
-    public function getTelefone() : string
-    {
-        return $this->telefone;
-    }
-
-    public function setTelefone(string $telefone) : void
-    {
-        $this->telefone = $telefone;
-    }
-
-    public function isWpp() : bool 
-    {
-        return $this->isWpp;
-    }
-
-    public function isTelegram() : bool 
-    {
-        return $this->isTelegram;
-    }
-
+    
     public function setDtDeletado(string $dtDeletado) : void
     {
         $this->dtDeletado = $dtDeletado;
@@ -88,5 +80,25 @@ class Cliente
     public function getDtDeletado() : string
     {
         return $this->dtDeletado;
-    } 
+    }
+    
+    public function setNrIdentificacao(string $nrIdentificacao)
+    {
+        $this->nrIdentificacao = intval($nrIdentificacao);
+    }
+
+    public function getNrIdentificacao()
+    {
+        return $this->nrIdentificacao;
+    }
+
+    public function setDtDeste(string $dtDesde)
+    {
+        $this->dtDesde = $dtDesde;
+    }
+
+    public function getDtDesde()
+    {
+        return $this->dtDesde;
+    }
 } 

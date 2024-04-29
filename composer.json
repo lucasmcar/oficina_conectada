@@ -34,6 +34,12 @@
         "telegram-bot/api": "^2.5",
         "phpmailer/phpmailer": "^6.9",
         "mercadopago/dx-php": "2.6.2",
-        "openboleto/openboleto": "^1.0"
+        "openboleto/openboleto": "^1.0",
+        "nfephp-org/sped-nfe": "^5.1",
+        "chillerlan/php-qrcode": "^5.0",
+        "firebase/php-jwt": "^6.10",
+        "react/http": "^1.10",
+        "react/socket": "^1.15",
+        "cboden/ratchet": "^0.4.4"
     }
 }
