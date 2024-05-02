@@ -18,4 +18,14 @@ class ClienteRepository
     {
         return $this->dao->insert($model);
     }
+
+    public function autenticar(Cliente $model)
+    {
+        return $this->dao->clientAuth($model);
+    }
+
+    public function infoClient(int $idCliente)
+    {
+        return $this->dao->selectClientInfo($idCliente);
+    }
 }

@@ -34,7 +34,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="/">Principal</a>
+                        <a class="nav-link" href="/">Principal</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/contact">Contato</a>
@@ -42,7 +42,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/about">Sobre</a>
                     </li>
-                    <li class="nav-item">
+                    <!--<li class="nav-item">
                         <a class="nav-link" href="/client/new">Novo Cliente</a>
                     </li>
                     <li class="nav-item">
@@ -50,7 +50,7 @@
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/car/info">Informações</a>
-                    </li>
+                    </li>-->
                 </ul>
             </div>
         </div>
@@ -59,27 +59,27 @@
       <div class="container-fluid h-custom">
         <div class="row d-flex justify-content-center align-items-center h-100">
           <div class="col-md-9 col-lg-6 col-xl-5">
-            <img src="https://oficinarentavel.com.br/wp-content/uploads/2018/08/219697-entenda-a-importancia-da-tecnologia-para-oficina.jpg" class="img-fluid" alt="Sample image">
+            <img src="https://chiptronic.com.br/blog/wp-content/uploads/2016/08/7-dicas-para-iniciantes-de-como-montar-uma-oficina-mec%C3%A2nica-768x505.jpg" class="img-fluid" alt="Sample image">
           </div>
           <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-          <form action="/auth">
+          <form action="/auth" method="POST">
             
           <!-- Email input -->
           <div data-mdb-input-init class="form-outline mb-4">
-            <input type="email" id="txtLogEmail" class="form-control form-control-lg"/>
+            <input type="email" id="txtLogEmail" name="email" class="form-control form-control-lg"/>
             <label class="form-label" for="txtLogEmail">Email</label>
           </div>
 
           <!-- Password input -->
           <div data-mdb-input-init class="form-outline mb-3">
-            <input type="password" id="txtLogNrId" class="form-control form-control-lg"/>
+            <input type="password" id="txtLogNrId" name="nridentificacao" class="form-control form-control-lg"/>
             <label class="form-label" id="lblLogNrId" for="txtLogNrId">Nr de Identificação (Oficina)</label>
           </div>
 
           <div class="d-flex justify-content-between align-items-center">
             <!-- Checkbox -->
             <div class="form-check mb-0">
-              <input class="form-check-input me-2" type="checkbox" value="" id="ckChange" />
+              <input class="form-check-input me-2" type="checkbox" name="tipo" value="" id="ckChange" />
               <label class="form-check-label" id="lblLogChange" for="ckChange">
                 Alternar para Cliente
               </label>
@@ -88,13 +88,17 @@
           </div>
 
           <div class="text-center text-lg-start mt-4 pt-2">
-            <button type="button" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
+            <button type="submit" data-mdb-button-init data-mdb-ripple-init class="btn btn-primary btn-lg"
               style="padding-left: 2.5rem; padding-right: 2.5rem;">Acessar</button>
-            <p class="small fw-bold mt-2 pt-1 mb-0">Don't have an account? <a href="#!"
-                class="link-danger">Register</a></p>
+            <p class="small fw-bold mt-2 pt-1 mb-0">Não  possui cadastro? <a href="/contact"
+                class="link-danger">Entre em contato</a></p>
           </div>
-
         </form>
+        <?php if (isset($_GET['login']) && $_GET['login'] == 'erro' && isset($_GET['tipo']) && $_GET['tipo'] == "1") { ?>
+              <div class="alert alert-warning" id="msgErroLogin">Não foi possível conectar o cliente</div>
+            <?php } else { ?>
+              <div class="alert alert-warning" id="msgErroLogin">Não foi possível conectar a oficina</div>
+            <?php } ?>
       </div>
     </div>
   </div>
@@ -102,26 +106,9 @@
     class="d-flex flex-column flex-md-row text-center text-md-start justify-content-between py-4 px-4 px-xl-5 bg-primary">
     <!-- Copyright -->
     <div class="text-white mb-3 mb-md-0">
-      Copyright © 2020. All rights reserved.
+      Copyright © <?=date('Y') ?>. Todos direitos reservados.
     </div>
     <!-- Copyright -->
-
-    <!-- Right -->
-    <div>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-facebook-f"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-twitter"></i>
-      </a>
-      <a href="#!" class="text-white me-4">
-        <i class="fab fa-google"></i>
-      </a>
-      <a href="#!" class="text-white">
-        <i class="fab fa-linkedin-in"></i>
-      </a>
-    </div>
-    <!-- Right -->
   </div>
 </section>
     
@@ -145,6 +132,30 @@
             lblLogChange.innerHTML = "Alternar para Cliente";
           }
        }
+
+       setTimeout(function(){
+            document.querySelector("#msgErroLogin").style.display ="none";
+        }, 2);
+
+        document.addEventListener("DOMContentLoaded", function() {
+        // Obtém o caminho da URL atual
+        var path = window.location.pathname;
+
+        // Seleciona a lista da navbar
+        var navbarList = document.querySelector('.navbar-nav');
+
+        // Seleciona todos os itens da lista da navbar
+        var links = navbarList.querySelectorAll('.nav-item a');
+
+        // Itera sobre os links da navbar
+        links.forEach(function(link) {
+            // Verifica se o atributo href do link corresponde ao caminho da URL atual
+            if (link.getAttribute('href') === path) {
+                // Adiciona a classe 'active' ao link correspondente
+                link.classList.add('active');
+            }
+        });
+    });
     </script>
     </body>
 </html>
