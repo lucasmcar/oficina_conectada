@@ -27,7 +27,15 @@ class ClienteDao
         if($this->connection->execute()){
             return $this->connection->lastInsertId();
         }
-        
+    }
+
+    public function selectClientInfo(int $idCliente)
+    {
+        $sql = "SELECT nome, email, dtcadastro, dtdesde, nridentificacao FROM cliente WHERE idcliente = :idcliente";
+        $this->connection->prepare($sql);
+        $this->connection->bind(':idcliente', $idCliente);
+        $clienteInfos = $this->connection->one();
+        return $clienteInfos;
     }
 
     public function selectAll()
@@ -44,7 +52,7 @@ class ClienteDao
         $this->connection->prepare($sql);
         $this->connection->bind(":nome", "%".$model->getNome()."%");
         $this->connection->bind(":email", "%".$model->getEmail()."%");
-        $this->connection->execute();
+        return $this->connection->execute();
     }
 
     public function update(Cliente $model, int $idCliente)
@@ -89,5 +97,14 @@ class ClienteDao
         $resultado = $this->connection->rs();
         return $resultado;
 
+    }
+
+    public function clientAuth(Cliente $model)
+    {
+        $sql = "SELECT idcliente, nome, email, nridentificacao FROM cliente WHERE email = :email AND nridentificacao = :nridentificacao";
+        $this->connection->prepare($sql);
+        $this->connection->bind(':email', $model->getEmail());
+        $this->connection->bind(':nridentificacao', $model->getNrIdentificacao());
+        return $this->connection->one();
     }
 }

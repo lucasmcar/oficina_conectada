@@ -37,6 +37,5 @@ class ClientController extends Action
             $_SESSION['last_client_id'] = $lastInserted; 
             $this->render('register_client');
         }
-
     }
 }

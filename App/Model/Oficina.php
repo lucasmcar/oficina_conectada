@@ -10,6 +10,7 @@ class Oficina
     private $telefone;
     private $isWpp;
     private $isTelegram;
+    private $nrIdentificacao;
 
     public function __construct()
     {
@@ -62,5 +63,15 @@ class Oficina
     {
         $this->isTelegram = $isTelegram;
         return $this->isTelegram;
+    }
+
+    public function setNrIdentificacao(string $nrIdentificacao) : void
+    {
+        $this->nrIdentificacao = $nrIdentificacao;
+    }
+
+    public function getNrIdentificacao() : string
+    {
+        return $this->nrIdentificacao;
     }
 }

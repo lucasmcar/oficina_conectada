@@ -46,4 +46,9 @@ class IndexController extends Action
     {
         $this->render('contato', 'index');
     }
+
+    public function forgot()
+    {
+        $this->render('forgot', 'index');
+    }
 }
