@@ -51,8 +51,8 @@ class Route extends Bootstrap
             ],
 
             'relatorioCliente' => [
-                'route' => '/relatorio/cliente',
-                'controller' => 'reportClienteController',
+                'route' => '/client/relatorio',
+                'controller' => 'reportClientController',
                 'action' => 'report'
             ],
 
@@ -87,7 +87,66 @@ class Route extends Bootstrap
                 'route' => '/create',
                 'controller' => 'clientController',
                 'action' => 'create'
+            ],
+
+            //Rotas Dashboard cliente
+
+            'clientDashboard' => [
+                'route' => '/client/client_dashboard',
+                'controller' => 'dashboardController',
+                'action' => 'clientDashboard'
+            ],
+
+            'clientCarDashboard' => [
+                'route' => '/client/car',
+                'controller' => 'dashboardController',
+                'action' => 'clientCar'
+            ],
+
+            'clientServiceDashboard' => [
+                'route' => '/client/services',
+                'controller' => 'dashboardController',
+                'action' => 'clientServices'
+            ],
+
+            'clientReportDashboard' => [
+                'route' => '/client/report',
+                'controller' => 'dashboardController',
+                'action' => 'clientServices'
+            ],
+
+            //Rotas dashboard oficina
+
+            'oficinaDashboard' => [
+                'route' => '/oficina/oficina_dashboard',
+                'controller' => 'dashboardController',
+                'action' => 'oficinaDashboard'
+            ],
+
+            'autenticar' => [
+                'route' => '/auth',
+                'controller' => 'authController',
+                'action' => 'autenticar'
+            ],
+
+            'logout' => [
+                'route' => '/logout',
+                'controller' => 'authController',
+                'action' => 'logout'
+            ],
+
+            'infoCliente' => [
+                'route' => '/cliente/info',
+                'controller' => 'dashboardController',
+                'action' => 'info'
+            ],
+
+            'forgot' => [
+                'route' => '/forgot',
+                'controller' => 'indexController',
+                'action' => 'forgot'
             ]
+            
         ];
 
         /*$routes['home'] = [

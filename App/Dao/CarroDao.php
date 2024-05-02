@@ -60,6 +60,15 @@ class CarroDao
         return $resultado;
     } 
 
+    public function selectInfoCarrosCliente(int $idCliente) : array | null
+    {
+        $sql = "SELECT idveiculo, modelo, placa, cor, ano, marca FROM veiculo WHERE idcliente = :idcliente";
+        $this->connection->prepare($sql);
+        $this->connection->bind(':idcliente', $idCliente);
+        $resultado = $this->connection->rs();
+        return $resultado;
+    } 
+
     public function update(Carro $model) : bool
     {
         $sql = "UPDATE veiculo SET modelo = :modelo, placa = :placa, cor = :cor, ano = :ano WHERE placa = :placa";
@@ -97,5 +106,14 @@ class CarroDao
         $this->connection->bind(':placa', $model->getPlaca());
         $this->connection->bind(':dtdeletado', $model->getDtDeletado());
         return $this->connection->execute();
+    }
+
+    public function getTotalVeiculos(int $idCliente)
+    {
+        $sql = "SELECT COUNT(*) as total FROM veiculo WHERE idcliente = :idcliente";
+        $this->connection->prepare($sql);
+        $this->connection->bind(':idcliente', $idCliente);
+        $resultado = $this->connection->rs();
+        return $resultado[0]['total'];
     }
 }

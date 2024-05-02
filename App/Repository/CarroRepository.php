@@ -34,6 +34,11 @@ class CarroRepository
         return $this->dao->selectAllInfoCarro();
     }
 
+    public function getCarClientInfo(int $idCliente)
+    {
+        return $this->dao->selectInfoCarrosCliente($idCliente);
+    }
+
     public function update(Carro $model)
     {
         return $this->dao->update($model);
@@ -42,5 +47,10 @@ class CarroRepository
     public function destroy(int $id)
     {
         
+    }
+
+    public function totalVeiculos(int $idCliente)
+    {
+        return $this->dao->getTotalVeiculos($idCliente);
     }
 }
